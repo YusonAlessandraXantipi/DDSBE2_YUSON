@@ -30,16 +30,29 @@ class UserController extends BaseController
             'username' => 'required|max:20',
             'password' => 'required|max:20',
             'gender' => 'required|in:Male,Female',
+            'name' => 'nullable|string|max:255', // Ensure name is optional
+            'email' => 'nullable|email|max:255', // Ensure email is optional
         ];
         $this->validate($request, $rules);
-
+    
         $userData = $request->all();
         $userData['password'] = Hash::make($request->password);
-
+    
+        // Provide a default name if not set
+        if (!isset($userData['name'])) {
+            $userData['name'] = "Unnamed"; 
+        }
+    
+        // Provide a default email if not set
+        if (!isset($userData['email'])) {
+            $userData['email'] = "noemail@example.com"; 
+        }
+    
+        // ✅ Now create the user outside of the condition
         $user = User::create($userData);
         return $this->successResponse($user, "User created successfully", 201);
     }
-
+    
     public function show($id)
     {
         $user = User::find($id);
