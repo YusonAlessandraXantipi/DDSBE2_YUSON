@@ -2,27 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-use App\Traits\ApiResponser;
-use Illuminate\Http\Request;
-use App\Models\User;
-use DB;
-
-class UserController extends Controller {
-    use ApiResponser;
-    private $request;
-
-    public function __construct(Request $request){
-        $this->request = $request;
-    }
-
-    public function getUsers(){
-        $users = User::all();
-        return response()->json($users, 200);
-    }
-
-    public function add(Request $request) {
-=======
 use App\Models\User;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
@@ -47,48 +26,31 @@ class UserController extends BaseController
 
     public function add(Request $request)
     {
->>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c
         $rules = [
             'username' => 'required|max:20',
             'password' => 'required|max:20',
             'gender' => 'required|in:Male,Female',
-<<<<<<< HEAD
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
         ];
-        $this->validate($request, $rules);
-        $user = User::create($request->all());
-        return response()->json($user, 201);
-    }
 
-    public function show($id) {
-        $user = User::findOrFail($id);
-        return response()->json($user);
-    }
-
-    public function update(Request $request, $id) {
-=======
-            'name' => 'nullable|string|max:255', // Ensure name is optional
-            'email' => 'nullable|email|max:255', // Ensure email is optional
-        ];
         $this->validate($request, $rules);
-    
+
         $userData = $request->all();
         $userData['password'] = Hash::make($request->password);
-    
-        // Provide a default name if not set
+
         if (!isset($userData['name'])) {
-            $userData['name'] = "Unnamed"; 
+            $userData['name'] = "Unnamed";
         }
-    
-        // Provide a default email if not set
+
         if (!isset($userData['email'])) {
-            $userData['email'] = "noemail@example.com"; 
+            $userData['email'] = "noemail@example.com";
         }
-    
-        // ✅ Now create the user outside of the condition
+
         $user = User::create($userData);
         return $this->successResponse($user, "User created successfully", 201);
     }
-    
+
     public function show($id)
     {
         $user = User::find($id);
@@ -102,39 +64,13 @@ class UserController extends BaseController
 
     public function update(Request $request, $id)
     {
->>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c
         $rules = [
             'username' => 'max:20',
             'password' => 'max:20',
             'gender' => 'in:Male,Female',
         ];
+
         $this->validate($request, $rules);
-<<<<<<< HEAD
-        $user = User::findOrFail($id);
-        $user->fill($request->all());
-
-        if ($user->isClean()) {
-            return response()->json(['error' => 'At least one value must change'], 422);
-        }
-
-        $user->save();
-        return response()->json($user);
-    }
-
-    public function delete($id) {
-        $user = User::findOrFail($id);
-        $user->delete();
-        return response()->json(['message' => 'User deleted successfully']);
-    }
-    
-    public function getUser(){
-        $user = ['name' => 'Jane Doe', 'email' => 'jane@example.com'];
-        return $this->successResponse($user); // ✅ use trait method
-    }
-
-    public function getError(){
-        return $this->errorResponse('User not found', 404); // ✅ use trait method
-=======
 
         $user = User::find($id);
 
@@ -168,9 +104,19 @@ class UserController extends BaseController
         return $this->successResponse(null, "User deleted successfully", 200);
     }
 
+    public function getUser()
+    {
+        $user = ['name' => 'Jane Doe', 'email' => 'jane@example.com'];
+        return $this->successResponse($user);
+    }
+
+    public function getError()
+    {
+        return $this->errorResponse('User not found', 404);
+    }
+
     public function goToDashboard()
     {
-    return redirect('/dashboard');
->>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c
+        return redirect('/dashboard');
     }
 }
