@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 
 namespace App\Models;
 
@@ -44,3 +45,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
     ];
 }*/
+=======
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model {
+    protected $table = 'tbluser';
+    protected $fillable = ['username', 'password'];
+    public $timestamps = false;
+}
+>>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c

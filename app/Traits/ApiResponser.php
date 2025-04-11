@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+<<<<<<< HEAD
 use Illuminate\Http\Response;
 
 trait ApiResponser
@@ -29,5 +30,24 @@ trait ApiResponser
             'error' => $message,
             'code' => $code
         ], $code);
+=======
+trait ApiResponser
+{
+    protected function successResponse($data, $message = "", $status = 200)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => $message,
+            'data' => $data
+        ], (int) $status); // Ensure status is an integer
+    }
+
+    protected function errorResponse($message, $status = 400)
+    {
+        return response()->json([
+            'success' => false,
+            'message' => $message
+        ], (int) $status); // Ensure status is an integer
+>>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c
     }
 }

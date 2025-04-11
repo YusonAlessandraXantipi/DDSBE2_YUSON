@@ -94,6 +94,10 @@ $app->configure('app');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+<<<<<<< HEAD
+=======
+$app->register(Illuminate\Routing\RoutingServiceProvider::class);
+>>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c
 
 /*
 |--------------------------------------------------------------------------
@@ -106,10 +110,23 @@ $app->configure('app');
 |
 */
 
+<<<<<<< HEAD
+=======
+// Registering the controllers
+>>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
 });
 
+<<<<<<< HEAD
+=======
+$app->bind(Illuminate\Contracts\Routing\ResponseFactory::class, function ($app) {
+    return new Illuminate\Routing\ResponseFactory(
+        $app['view'], $app['redirect']
+    );
+});
+
+>>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c
 return $app;

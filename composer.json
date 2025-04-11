@@ -6,6 +6,10 @@
     "type": "project",
     "require": {
         "php": "^8.1",
+<<<<<<< HEAD
+=======
+        "laravel/framework": "^10.48",
+>>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c
         "laravel/lumen-framework": "^10.0"
     },
     "require-dev": {
@@ -14,10 +18,16 @@
         "phpunit/phpunit": "^10.0"
     },
     "autoload": {
+<<<<<<< HEAD
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
+=======
+      "psr-4": {
+          "App\\": "app/",
+          "App\\Models\\": "app/Models/"
+>>>>>>> 7a08be47408650d080d9694e0db59fc0ecb4f55c
         }
     },
     "autoload-dev": {
