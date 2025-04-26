@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+/*namespace App\Traits;
 
 trait ApiResponseTrait
 {
@@ -20,4 +20,4 @@ trait ApiResponseTrait
             'message' => $message
         ], $code);
     }
-}
+}*/
